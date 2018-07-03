@@ -75,11 +75,9 @@ RCT_EXPORT_METHOD(setTimeout:(int)timeoutId
         }
 
         // Give some time for the task to finish. If we call the endBackgroundTask
-        // right away, the app doesn't get any time to perform any operation.
+        // right away, the app doesn't get any time to perform any operation. The
+        // endBackgroundTask will be called by the OS automatically.
         // [[UIApplication sharedApplication] endBackgroundTask:task];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 5000 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
-            [[UIApplication sharedApplication] endBackgroundTask:task];
-        });
     });
     resolve([NSNumber numberWithBool:YES]);
 }
